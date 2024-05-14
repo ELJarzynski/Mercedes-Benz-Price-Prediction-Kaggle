@@ -15,9 +15,7 @@ df = pd.read_csv('https://github.com/ELJarzynski/FinalProject-UM/blob/master/usa
 
 ```
 ## Przygotowanie danych pod uczenie maszynowe
-### Po wczytaniu pliku użyłem biblioteki Pandas do wyczyszczenia zbióru danych ze zbędnych znaków i stringów poczym dodałem 
-### nową kolumne 'Year Build' i usunąłem kolumne 'Name', ponieważ zawierała nazwy obiektów, które nie są istotne 
-### dla analizy danych.
+### Po wczytaniu pliku użyłem biblioteki Pandas do wyczyszczenia zbióru danych ze zbędnych znaków i stringów poczym dodałem nową kolumne 'Year Build' i usunąłem kolumne 'Name', ponieważ zawierała nazwy obiektów, które nie są istotne dla analizy danych.
 
 ```python
 df['Mileage'] = df['Mileage'].str.replace('mi.', '')
