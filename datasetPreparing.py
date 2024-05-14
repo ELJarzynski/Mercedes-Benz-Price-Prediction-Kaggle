@@ -1,9 +1,7 @@
 import pandas as pd
 from sklearn.impute import SimpleImputer
-from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.pipeline import make_pipeline
-from sklearn.tree import DecisionTreeRegressor
 
 """ ---------------------------------------- DATA PREPARING ---------------------------------------- """
 
@@ -44,16 +42,14 @@ df['Price'] = df['Price'].astype(float)
 df['Review Count'] = df['Review Count'].astype(float)
 df['Year Build'] = df['Year Build'].astype(float)
 
-
 """Data preprocessing"""
-# Potok dla imputera
-imputer_pipeline = make_pipeline(
+pipeline = make_pipeline(
     SimpleImputer(strategy='mean'),
     MinMaxScaler()
 )
 
 # Przetworzenie danych za pomocą potoków
-processed_data = imputer_pipeline.fit_transform(df)
+processed_data = pipeline.fit_transform(df)
 
 # Utworzenie DataFrame z przetworzonych danych
 df = pd.DataFrame(processed_data, columns=df.columns)
@@ -62,12 +58,12 @@ df = pd.DataFrame(processed_data, columns=df.columns)
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 
-"""Train test split został zastosowany do podziału zbioru danych na zbiór treningowy i testowy"""
+"""Train test split was used to split dataset into training and testing sets"""
 # Podział na zbiór treningowy i testowy
 X_train, X_test, y_train, y_test = train_test_split(df.drop(columns=['Price']), df['Price'],
                                                     test_size=0.33, random_state=42)
 
-"""Podział zbioru treningowego na treningowy i walidacyjny"""
+"""Splitting the training set into training and validation sets"""
 # Zastosowałem walidacje krzyżową, ponieważ pozwala ona na zminimalizowanie wpływu losowego podziału danych
 # na jakość modelu oraz wyniki są uśredniane, co daje bardziej stabilną ocenę jakości modelu
 X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.33, random_state=42)
