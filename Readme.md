@@ -88,10 +88,10 @@ X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Review%20Count.png)
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Year%20Build.png)
 ## Wykres scatter dla zależności ceny od poszczególnych kolumn
-![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Price.png)
-![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Rating.png)
-![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Review%20Count.png)
-![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Year%20Build.png)
+![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Cena%20Ocena.png)
+![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Cena%20Oglądanie.png)
+![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Cena%20Rok.png)
+![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Cena%20Przebieg.png)
 # Na tym inicjalizacji Modeli wybrałem Regresje, ponieważ problem polega na przewidywaniu ceny, która jest zmienną ciągłą
 ## Na pierwszy model wybrałem regresje liniową bo prędzej dużo z nią pracowałem
 ```python
