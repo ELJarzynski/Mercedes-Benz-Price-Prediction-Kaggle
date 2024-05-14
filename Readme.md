@@ -157,3 +157,6 @@ mae = mean_absolute_error(y_val, y_pred)
 ```
 ### Błąd MSE i MAE jest  jest równy
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/RFpred.png)
+
+# Najlepszą regresją do predykcji cen Mercedesów w Ameryce jest RandomForestRegressor z wynikiem 
+## Średnio kwadratowym wynoszącym 0.019 i błędem absolutnym wynoszącym 0.088
