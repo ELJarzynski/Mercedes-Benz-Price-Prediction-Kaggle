@@ -29,9 +29,43 @@ df['Review Count'] = df['Review Count'].str.replace(',', '')
 ```python
 df['Year Build'] = df['Name'].str.split().str[0]
 df['Name'] = df['Name'].str.split(n=1).str[1]
+df = df.drop(columns=['Name'])
 ```
-### Używanie sklearn do standaryzacji i normalizacji danych przy użyciu potoków
+Zmiana wartości 'Not Priced' na None, aby móc łatwiej obsłużyć brakjące dane w dalszej obróbce.
+```python
+df.replace('Not Priced', None, inplace=True)
+```
+# Konwersja kolumn na typ float, aby miały wszystkie ten sam typ danych
+```python
+df['Mileage'] = df['Mileage'].astype(float)
+df['Price'] = df['Price'].astype(float)
+df['Review Count'] = df['Review Count'].astype(float)
+df['Year Build'] = df['Year Build'].astype(float)
+```
+## Używanie sklearn do standaryzacji i normalizacji danych przy użyciu potoków
+```python
+# Potok dla imputera
+imputer_pipeline = make_pipeline(
+    SimpleImputer(strategy='mean')
+)
 
+# Określenie kolumn dla skalera
+scaler_columns = df.columns.difference(["Year Build", "Price"])
+
+# Potok dla skalera
+scaler_pipeline = make_pipeline(
+    MinMaxScaler()
+)
+
+# Przetworzenie danych za pomocą potoków
+processed_data = imputer_pipeline.fit_transform(df)
+
+# Utworzenie DataFrame z przetworzonych danych
+df = pd.DataFrame(processed_data, columns=df.columns)
+
+# Przetworzenie danych za pomocą potoku dla skalera
+df[scaler_columns] = scaler_pipeline.fit_transform(df[scaler_columns])
+```
 ```python
 from sklearn.preprocessing import StandardScaler
 StandardScaler = StandardScaler()
