@@ -83,21 +83,21 @@ X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.
 
 """Inicjalizacja modelu"""
 # Inicjalizacja i dopasowanie modelu regresji
-from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
 
-model = DecisionTreeRegressor(
+model = RandomForestRegressor(
+    n_estimators=90,
     criterion='friedman_mse',
-    splitter='best',
-    max_depth=12,
-    min_samples_split=3,
-    min_samples_leaf=1,
-    min_weight_fraction_leaf=0.3,
+    max_depth=35,
+    min_samples_split=10,
+    min_samples_leaf=4,
+    max_features='log2',
+    n_jobs=-1,
     random_state=42,
-    max_leaf_nodes=50,
 )
 model.fit(X_train, y_train)
 
 y_pred = model.predict(X_val)
 mse = mean_squared_error(y_val, y_pred)
 mae = mean_absolute_error(y_val, y_pred)
-print(f'DecisionTreeRegressor means errors\nMSE: {mse}, MAE: {mae}')
+print(f'RandomForestRegressor means errors\nMSE: {mse}, MAE: {mae}')

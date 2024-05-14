@@ -147,5 +147,27 @@ y_pred = model.predict(X_val)
 mse = mean_squared_error(y_val, y_pred)
 mae = mean_absolute_error(y_val, y_pred)
 ```
-### Błąd MSE i MAE jest dość wysoki ale mniejszy od regresji liniowej
+### Błąd MSE i MAE jest dość wysoki, mniejszy od regresji liniowej ale większy od KNN
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Treepred.png)
+### Czwarty rodzaj regresji RandomForestRegressor
+```python
+from sklearn.ensemble import RandomForestRegressor
+
+model = RandomForestRegressor(
+    n_estimators=90,
+    criterion='friedman_mse',
+    max_depth=35,
+    min_samples_split=10,
+    min_samples_leaf=4,
+    max_features='log2',
+    n_jobs=-1,
+    random_state=42,
+)
+model.fit(X_train, y_train)
+
+y_pred = model.predict(X_val)
+mse = mean_squared_error(y_val, y_pred)
+mae = mean_absolute_error(y_val, y_pred)
+```
+### Błąd MSE i MAE jest dość wysoki, mniejszy od regresji liniowej ale większy od KNN
+![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/RFpred.png)
