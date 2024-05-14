@@ -28,8 +28,9 @@ df['Review Count'] = df['Review Count'].str.replace(',', '')
 ```python
 df['Year Build'] = df['Name'].str.split().str[0]
 df['Name'] = df['Name'].str.split(n=1).str[1]
-Po przekształcenia zmiennych kategorycznych, za pomocą StandardScaler normalizuje kolumne SquareFeet i ustawiam dane w kolejności hronologicznej
 ```
+# Po przekształcenia zmiennych kategorycznych, za pomocą StandardScaler normalizuje kolumne SquareFeet i ustawiam dane w kolejności hronologicznej
+
 ```python
 from sklearn.preprocessing import StandardScaler
 StandardScaler = StandardScaler()
