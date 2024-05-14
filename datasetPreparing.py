@@ -86,7 +86,7 @@ X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.
 
 """Inicjalizacja modelu"""
 # Inicjalizacja i dopasowanie modelu regresji liniowej
-lm = LinearRegression(n_jobs=-1, )
+lm = LinearRegression(n_jobs=-1, fit_intercept=True)
 lm.fit(X_train, y_train)
 
 # Predykcja na zbiorze walidacyjnym
@@ -98,3 +98,51 @@ mae = mean_absolute_error(y_val, y_pred_val)
 
 # Wydruk informacji o błędach na zbiorze walidacyjnym
 print(f'Linear Regression means errors\n MSE: {mse}, MAE: {mae}')
+import matplotlib.pyplot as plt
+
+# Trenowanie modelu
+lm.fit(X_train, y_train)
+
+# Predykcja na zbiorze walidacyjnym
+y_pred = lm.predict(X_val)
+
+import matplotlib.pyplot as plt
+
+# Wykres zależności ceny od reszty cech
+df.hist(bins=50, figsize=(20, 15))
+plt.show()
+# # Scatter plot dla ceny vs. Mileage
+# plt.figure(figsize=(12, 8))
+# plt.scatter(df['Mileage'], df['Price'], alpha=0.5)
+# plt.xlabel('Mileage')
+# plt.ylabel('Price')
+# plt.title('Price vs. Mileage')
+# plt.grid(True)
+# plt.show()
+#
+# # Scatter plot dla ceny vs. Rating
+# plt.figure(figsize=(12, 8))
+# plt.scatter(df['Rating'], df['Price'], alpha=0.5)
+# plt.xlabel('Rating')
+# plt.ylabel('Price')
+# plt.title('Price vs. Rating')
+# plt.grid(True)
+# plt.show()
+#
+# # Scatter plot dla ceny vs. Review Count
+# plt.figure(figsize=(12, 8))
+# plt.scatter(df['Review Count'], df['Price'], alpha=0.5)
+# plt.xlabel('Review Count')
+# plt.ylabel('Price')
+# plt.title('Price vs. Review Count')
+# plt.grid(True)
+# plt.show()
+#
+# # Scatter plot dla ceny vs. Year Build
+# plt.figure(figsize=(12, 8))
+# plt.scatter(df['Year Build'], df['Price'], alpha=0.5)
+# plt.xlabel('Year Build')
+# plt.ylabel('Price')
+# plt.title('Price vs. Year Build')
+# plt.grid(True)
+# plt.show()
