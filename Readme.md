@@ -162,6 +162,6 @@ mae = mean_absolute_error(y_val, y_pred)
 ### Błąd MSE i MAE jest  jest równy
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/RFpred.png)
 
-# Najlepszą regresją do predykcji cen Mercedesów w Ameryce jest RandomForestRegressor z wynikiem 
-### Średnio kwadratowym wynoszącym 0.019, błędem bezwzględnym wynoszącym 0.088 i błędem z funkcji Hubera wynoszącym 0.01
+# Najlepszą regresją do predykcji cen Mercedesów w Ameryce jest RandomForestRegressor
+### Z błedem funkcji Hubera wynoszącym 0.01, wybrałem tą miare ponieważ zbiór danych posiada wartości odstające, a funkcja Hubera jest bardziej odporna na wpływ wartości odstających niż MSE.
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Finalerorrs.png)
