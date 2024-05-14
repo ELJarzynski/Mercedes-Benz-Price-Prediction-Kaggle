@@ -89,7 +89,7 @@ X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.
 lm = LinearRegression(n_jobs=-1, )
 lm.fit(X_train, y_train)
 
-# Przewidywanie na zbiorze walidacyjnym
+# Predykcja na zbiorze walidacyjnym
 y_pred_val = lm.predict(X_val)
 
 # Obliczenie błędów na zbiorze walidacyjnym
