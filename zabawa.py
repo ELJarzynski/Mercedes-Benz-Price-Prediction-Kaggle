@@ -46,16 +46,18 @@ df['Year Build'] = df['Year Build'].astype(float)
 
 """Data preprocessing"""
 # Potok dla imputera
-imputer_pipeline = make_pipeline(
+pipeline = make_pipeline(
     SimpleImputer(strategy='mean'),
     MinMaxScaler()
 )
 
 # Przetworzenie danych za pomocą potoków
-processed_data = imputer_pipeline.fit_transform(df)
+processed_data = pipeline.fit_transform(df)
 
 # Utworzenie DataFrame z przetworzonych danych
 df = pd.DataFrame(processed_data, columns=df.columns)
+
+
 
 """ ---------------------------------------- SECOND PART ---------------------------------------- """
 from sklearn.model_selection import train_test_split

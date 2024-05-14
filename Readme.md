@@ -47,27 +47,16 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.pipeline import make_pipeline
 
-# Potok dla imputera
-imputer_pipeline = make_pipeline(
-    SimpleImputer(strategy='mean')
-)
-
-# Określenie kolumn dla skalera
-scaler_columns = df.columns.difference(["Year Build", "Price"])
-
-# Potok dla skalera
-scaler_pipeline = make_pipeline(
+pipeline = make_pipeline(
+    SimpleImputer(strategy='mean'),
     MinMaxScaler()
 )
 
 # Przetworzenie danych za pomocą potoków
-processed_data = imputer_pipeline.fit_transform(df)
+processed_data = pipeline.fit_transform(df)
 
 # Utworzenie DataFrame z przetworzonych danych
 df = pd.DataFrame(processed_data, columns=df.columns)
-
-# Przetworzenie danych za pomocą potoku dla skalera
-df[scaler_columns] = scaler_pipeline.fit_transform(df[scaler_columns])
 ```
 
 ## Zbiór danych prezentuje się następująco 
@@ -77,8 +66,9 @@ df[scaler_columns] = scaler_pipeline.fit_transform(df[scaler_columns])
 ### Została zastosowania walidacja krzyżowa, ponieważ pozwala ona na zminimalizowanie wpływu losowego podziału danych na jakość modelu oraz wyniki są uśredniane, co daje bardziej stabilną ocenę jakości modelu
 ```python
 from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(df.drop(columns=['Price']), df['Price'], test_size=0.2, random_state=42)
-X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(df.drop(columns=['Price']), df['Price'],
+                                                    test_size=0.33, random_state=42)
+X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.33, random_state=42)
 ```
 # Tak prezentują się wykresy danych
 ## Histogramy dla wszystkich kolumn
