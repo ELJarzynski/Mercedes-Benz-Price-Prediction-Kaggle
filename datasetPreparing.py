@@ -71,6 +71,7 @@ X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.
 """Inicjalizacja modelu"""
 from sklearn.ensemble import RandomForestRegressor
 
+
 model = RandomForestRegressor(
     n_estimators=90,
     criterion='friedman_mse',
