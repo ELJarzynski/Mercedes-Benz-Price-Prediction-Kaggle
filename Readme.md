@@ -86,6 +86,9 @@ X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.
 # Na inicjalizacje Modeli wybrałem Regresje, ponieważ problem polega na przewidywaniu ceny, która jest zmienną ciągłą
 ## Na pierwszy model wybrałem regresje liniową
 ```python
+from sklearn.linear_model import LinearRegression
+
+
 lm = LinearRegression(n_jobs=-1, fit_intercept=True)
 lm.fit(X_train, y_train)
 
