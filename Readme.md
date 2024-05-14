@@ -85,19 +85,15 @@ X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.
 # Na inicjalizacje Modeli wybrałem Regresje, ponieważ problem polega na przewidywaniu ceny, która jest zmienną ciągłą
 ## Na pierwszy model wybrałem regresje liniową
 ```python
-# Inicjalizacja i dopasowanie modelu regresji liniowej
 lm = LinearRegression(n_jobs=-1, fit_intercept=True)
 lm.fit(X_train, y_train)
 
-# Predykcja na zbiorze walidacyjnym
 y_pred_val = lm.predict(X_val)
-
-# Obliczenie błędów na zbiorze walidacyjnym
 mse = mean_squared_error(y_val, y_pred_val)
 mae = mean_absolute_error(y_val, y_pred_val)
 ```
 ### Błąd MSE i MAE jest dość wysoki
-![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/LinearRegressionPred.png)
+![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/LMPred.png)
 
 
 ### Drugi rodzaj regresji KNN
