@@ -69,9 +69,7 @@ df = pd.DataFrame(processed_data, columns=df.columns)
 # Przetworzenie danych za pomocą potoku dla skalera
 df[scaler_columns] = scaler_pipeline.fit_transform(df[scaler_columns])
 ```
-```python
-
-```
+## Zbiór danych prezentuje się następująco 
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/DataFrame.png)
 ## Gdy już dane są przygotwane używam framework'a pytorch do uczeniam maszynowego
 ### Za pomocą sklearn dzielimy dane na treningowe i testowe
