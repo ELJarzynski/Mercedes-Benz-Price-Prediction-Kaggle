@@ -103,7 +103,7 @@ from sklearn.neighbors import KNeighborsRegressor
 model = KNeighborsRegressor(
     n_neighbors=41,  # Według mnie idealna wartość gdzie jednostka jest wytrenowana na granicy przetrenowania
     weights='distance',
-    n_jobs=-1  # liczba równoległych wątków
+    n_jobs=-1
 )
 model.fit(X_train, y_train)
 
