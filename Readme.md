@@ -1,5 +1,6 @@
 # Predykcja cen mieszkań mercedesów za pomcą uczenia maszynowego
-W moim projekcie będę predyktował ceny Mercedesów sprzedanych w Amerycy za pomocą zbioru danych z [Kaggle](https://www.kaggle.com/datasets/danishammar/usa-mercedes-benz-prices-dataset/data) 
+W moim projekcie będę predyktował ceny Mercedesów sprzedanych w Amerycy za pomocą zbioru danych z 
+[Kaggle](https://www.kaggle.com/datasets/danishammar/usa-mercedes-benz-prices-dataset/data) 
 używając biblioteki Scikit-learn do nauczenia maszynowego tego modelu
 ## Przygotowanie bazy danych do wdrożenia uczenia maszynowego
 ### Instalacja potrzebnych bibliotek
@@ -10,24 +11,25 @@ pip install sklearn
 ```
 Wczytujemy plik za pomocą pandas read.csv 
 ```python
-house = pd.read_csv('https://github.com/ELJarzynski/FinalProject-UM/blob/master/usa_mercedes_benz_prices.csv')
+df = pd.read_csv('https://github.com/ELJarzynski/FinalProject-UM/blob/master/usa_mercedes_benz_prices.csv')
 
 ```
-### Używanie sklearn do standaryzacji i normalizacji danych
-Po wczytaniu pliku użyłem OneHotEncoder do przekształcenia zmiennych kategorycznych przed dalszą analizą danych
+### Używanie sklearn do standaryzacji i normalizacji danych przy użyciu potoków
+Po wczytaniu pliku użyłem biblioteki Pandas do wyczyszczenia zbióru danych ze zbędnych znaków i stringów poczym dodałem 
+nową kolumne 'Year Build' i usunąłem kolumne 'Name', ponieważ zawierała nazwy obiektów, które nie są istotne dla analizy danych.
+
 ```python
-from sklearn.preprocessing import OneHotEncoder
-hot_encoder = OneHotEncoder()
-encoded_feature = hot_encoder.fit_transform(house[['Neighborhood']])
-onehot_df = pd.DataFrame(
-    encoded_feature.toarray(),
-    columns=hot_encoder.get_feature_names_out(['Neighborhood']),
-    index=house.index
-)
-house.drop(['Neighborhood'], axis=1, inplace=True)
-house = house.join(onehot_df)
+df['Mileage'] = df['Mileage'].str.replace('mi.', '')
+df['Mileage'] = df['Mileage'].str.replace(',', '')
+df['Price'] = df['Price'].str.replace('$', '')
+df['Price'] = df['Price'].str.replace(',', '')
+df['Review Count'] = df['Review Count'].str.replace(',', '')
 ```
+```python
+df['Year Build'] = df['Name'].str.split().str[0]
+df['Name'] = df['Name'].str.split(n=1).str[1]
 Po przekształcenia zmiennych kategorycznych, za pomocą StandardScaler normalizuje kolumne SquareFeet i ustawiam dane w kolejności hronologicznej
+```
 ```python
 from sklearn.preprocessing import StandardScaler
 StandardScaler = StandardScaler()
