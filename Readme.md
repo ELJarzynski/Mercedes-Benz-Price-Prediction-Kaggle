@@ -12,8 +12,8 @@ pip install sklearn
 Wczytujemy plik za pomocą pandas read.csv 
 ```python
 df = pd.read_csv('https://github.com/ELJarzynski/FinalProject-UM/blob/master/usa_mercedes_benz_prices.csv')
-
 ```
+
 # Przygotowanie danych pod uczenie maszynowe
 ### Po wczytaniu pliku użyłem biblioteki Pandas do wyczyszczenia zbióru danych ze zbędnych znaków i stringów poczym dodałem nową kolumne 'Year Build' i usunąłem kolumne 'Name', ponieważ zawierała nazwy obiektów, które nie są istotne dla analizy danych.
 
