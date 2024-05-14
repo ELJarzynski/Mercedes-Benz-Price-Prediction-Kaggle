@@ -7,7 +7,7 @@ używając biblioteki Scikit-learn do nauczenia maszynowego tego modelu
 pip install pandas
 pip install sklearn
 
-```~~~~
+```
 Wczytujemy plik za pomocą pandas read.csv 
 ```python
 house = pd.read_csv('https://github.com/ELJarzynski/FinalProject-UM/blob/master/usa_mercedes_benz_prices.csv')
