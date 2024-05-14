@@ -92,7 +92,7 @@ X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Cena%20Oglądanie.png)
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Cena%20Rok.png)
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Cena%20Przebieg.png)
-# Na inicjalizacjie Modeli wybrałem Regresje, ponieważ problem polega na przewidywaniu ceny, która jest zmienną ciągłą
+# Na inicjalizacje Modeli wybrałem Regresje, ponieważ problem polega na przewidywaniu ceny, która jest zmienną ciągłą
 ## Na pierwszy model wybrałem regresje liniową
 ```python
 # Inicjalizacja i dopasowanie modelu regresji liniowej
@@ -106,5 +106,24 @@ y_pred_val = lm.predict(X_val)
 mse = mean_squared_error(y_val, y_pred_val)
 mae = mean_absolute_error(y_val, y_pred_val)
 ```
-![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/LinearRegressionPred.png)
 ### Błąd MSE i MAE jest dość wysoki
+![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/LinearRegressionPred.png)
+
+
+### Drugi rodzaj regresji KNN
+```python
+from sklearn.neighbors import KNeighborsRegressor
+
+model = KNeighborsRegressor(
+    n_neighbors=41,  # Według mnie idealna wartość gdzie jednostka jest wytrenowana na granicy przetrenowania
+    weights='distance',
+    n_jobs=-1  # liczba równoległych wątków
+)
+model.fit(X_train, y_train)
+
+y_pred = model.predict(X_val)
+mse = mean_squared_error(y_val, y_pred)
+mae = mean_absolute_error(y_val, y_pred)
+```
+### Błąd MSE i MAE jest dość wysoki ale mniejszy od regresji liniowej
+![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/KNNpred.png)

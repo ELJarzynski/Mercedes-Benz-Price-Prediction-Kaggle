@@ -67,11 +67,9 @@ df = pd.DataFrame(processed_data, columns=df.columns)
 
 # Przetworzenie danych za pomocą potoku dla skalera
 df[scaler_columns] = scaler_pipeline.fit_transform(df[scaler_columns])
-print(df.head())
-print(df.info())
+
 """ ---------------------------------------- SECOND PART ---------------------------------------- """
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 
 """Train test split został zastosowany do podziału zbioru danych na zbiór treningowy i testowy"""
@@ -85,29 +83,13 @@ X_train, X_test, y_train, y_test = train_test_split(df.drop(columns=['Price']), 
 X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.2, random_state=42)
 
 """Inicjalizacja modelu"""
-# Inicjalizacja i dopasowanie modelu regresji liniowej
-lm = LinearRegression(n_jobs=-1, fit_intercept=True)
-lm.fit(X_train, y_train)
+# Inicjalizacja i dopasowanie modelu regresji
+from sklearn.neighbors import KNeighborsRegressor
 
-# Predykcja na zbiorze walidacyjnym
-y_pred_val = lm.predict(X_val)
+model =
+model.fit(X_train, y_train)
 
-# Obliczenie błędów na zbiorze walidacyjnym
-mse = mean_squared_error(y_val, y_pred_val)
-mae = mean_absolute_error(y_val, y_pred_val)
-
-# Wydruk informacji o błędach na zbiorze walidacyjnym
-print(f'Linear Regression means errors\n MSE: {mse}, MAE: {mae}')
-import matplotlib.pyplot as plt
-
-# Trenowanie modelu
-lm.fit(X_train, y_train)
-
-# Predykcja na zbiorze walidacyjnym
-y_pred = lm.predict(X_val)
-
-import matplotlib.pyplot as plt
-
-# Wykres zależności ceny od reszty cech
-df.hist(bins=50, figsize=(20, 15))
-plt.show()
+y_pred = model.predict(X_val)
+mse = mean_squared_error(y_val, y_pred)
+mae = mean_absolute_error(y_val, y_pred)
+print(f'KNN means errors\nMSE: {mse}, MAE: {mae}')
