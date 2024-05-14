@@ -86,4 +86,15 @@ model.fit(X_train, y_train)
 y_pred = model.predict(X_val)
 mse = mean_squared_error(y_val, y_pred)
 mae = mean_absolute_error(y_val, y_pred)
-print(f'RandomForestRegressor means errors\nMSE: {mse:.3f}, MAE: {mae:.3f}')
+
+"""Predictions errors"""
+import numpy as np
+
+
+def huber_loss(y_true, y_pred, delta=1.0):
+    error = y_true - y_pred
+    huber_loss = np.where(np.abs(error) < delta, 0.5 * error ** 2, delta * (np.abs(error) - 0.5 * delta))
+    return np.mean(huber_loss)
+
+huber_val = huber_loss(y_val, y_pred)
+print(f'RandomForestRegressor means errors\nMSE: {mse:.3f}, MAE: {mae:.3f}, Huber Prediction: {huber_val:.3f}')
