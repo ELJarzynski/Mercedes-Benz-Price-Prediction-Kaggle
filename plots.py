@@ -1,5 +1,5 @@
 from datasetPreparing import *
-
+import matplotlib.pyplot as plt
 # Histogramy dla wszystkich kolumn
 df.hist(bins=50, figsize=(20, 15))
 plt.show()

@@ -1,9 +1,8 @@
 import pandas as pd
-import matplotlib.pyplot as plt
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.pipeline import make_pipeline
-from sklearn.compose import ColumnTransformer
+from sklearn.tree import DecisionTreeRegressor
 
 """ ---------------------------------------- DATA PREPARING ---------------------------------------- """
 
@@ -84,12 +83,21 @@ X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.
 
 """Inicjalizacja modelu"""
 # Inicjalizacja i dopasowanie modelu regresji
-from sklearn.neighbors import KNeighborsRegressor
+from sklearn.tree import DecisionTreeRegressor
 
-model =
+model = DecisionTreeRegressor(
+    criterion='friedman_mse',
+    splitter='best',
+    max_depth=12,
+    min_samples_split=3,
+    min_samples_leaf=1,
+    min_weight_fraction_leaf=0.3,
+    random_state=42,
+    max_leaf_nodes=50,
+)
 model.fit(X_train, y_train)
 
 y_pred = model.predict(X_val)
 mse = mean_squared_error(y_val, y_pred)
 mae = mean_absolute_error(y_val, y_pred)
-print(f'KNN means errors\nMSE: {mse}, MAE: {mae}')
+print(f'DecisionTreeRegressor means errors\nMSE: {mse}, MAE: {mae}')

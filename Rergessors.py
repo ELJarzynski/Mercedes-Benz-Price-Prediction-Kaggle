@@ -26,3 +26,22 @@ mse = mean_squared_error(y_val, y_pred)
 mae = mean_absolute_error(y_val, y_pred)
 
 print(f'KNN means errors\nMSE: {mse}, MAE: {mae}')
+
+from sklearn.tree import DecisionTreeRegressor
+
+model = DecisionTreeRegressor(
+    criterion='friedman_mse',
+    splitter='best',
+    max_depth=12,
+    min_samples_split=3,
+    min_samples_leaf=1,
+    min_weight_fraction_leaf=0.3,
+    random_state=42,
+    max_leaf_nodes=50,
+)
+model.fit(X_train, y_train)
+
+y_pred = model.predict(X_val)
+mse = mean_squared_error(y_val, y_pred)
+mae = mean_absolute_error(y_val, y_pred)
+print(f'DecisionTreeRegressor means errors\nMSE: {mse}, MAE: {mae}')

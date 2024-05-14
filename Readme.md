@@ -127,3 +127,25 @@ mae = mean_absolute_error(y_val, y_pred)
 ```
 ### Błąd MSE i MAE jest dość wysoki ale mniejszy od regresji liniowej
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/KNNpred.png)
+### Trzeci rodzaj regresji DecisionTreeRegressor
+```python
+from sklearn.tree import DecisionTreeRegressor
+
+model = DecisionTreeRegressor(
+    criterion='friedman_mse',
+    splitter='best',
+    max_depth=12,
+    min_samples_split=3,
+    min_samples_leaf=1,
+    min_weight_fraction_leaf=0.3,
+    random_state=42,
+    max_leaf_nodes=50,
+)
+model.fit(X_train, y_train)
+
+y_pred = model.predict(X_val)
+mse = mean_squared_error(y_val, y_pred)
+mae = mean_absolute_error(y_val, y_pred)
+```
+### Błąd MSE i MAE jest dość wysoki ale mniejszy od regresji liniowej
+![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Treepred.png)
