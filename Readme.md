@@ -11,6 +11,7 @@ pip install sklearn
 ```
 Wczytujemy plik za pomocą pandas read.csv 
 ```python
+import pandas as pd
 df = pd.read_csv('https://github.com/ELJarzynski/FinalProject-UM/blob/master/usa_mercedes_benz_prices.csv')
 ```
 
@@ -42,6 +43,10 @@ df['Year Build'] = df['Year Build'].astype(float)
 ```
 # Używanie sklearn do standaryzacji i normalizacji danych przy użyciu potoków
 ```python
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.pipeline import make_pipeline
+
 # Potok dla imputera
 imputer_pipeline = make_pipeline(
     SimpleImputer(strategy='mean')
@@ -65,14 +70,7 @@ df = pd.DataFrame(processed_data, columns=df.columns)
 df[scaler_columns] = scaler_pipeline.fit_transform(df[scaler_columns])
 ```
 ```python
-from sklearn.preprocessing import StandardScaler
-StandardScaler = StandardScaler()
-SquareFeet_scaler = StandardScaler.fit_transform(house[['SquareFeet']])
-SquareFeet_scaler_df = pd.DataFrame(SquareFeet_scaler, columns=['SquareFeet'])
-house['SquareFeet'] = SquareFeet_scaler_df['SquareFeet']
 
-df = house.sort_values(by='YearBuilt')
-df = df.reset_index(drop=True)
 ```
 ![alt table](https://github.com/ELJarzynski/Inzynirka/blob/main/images/Terminal%20after%20data%20prepering.jpg)
 ## Gdy już dane są przygotwane używam framework'a pytorch do uczeniam maszynowego
