@@ -14,8 +14,8 @@ Wczytujemy plik za pomocą pandas read.csv
 df = pd.read_csv('https://github.com/ELJarzynski/FinalProject-UM/blob/master/usa_mercedes_benz_prices.csv')
 
 ```
-### Używanie sklearn do standaryzacji i normalizacji danych przy użyciu potoków
-Po wczytaniu pliku użyłem biblioteki Pandas do wyczyszczenia zbióru danych ze zbędnych znaków i stringów poczym dodałem 
+### Przygotowanie danych pod uczenie maszynowe
+#### Po wczytaniu pliku użyłem biblioteki Pandas do wyczyszczenia zbióru danych ze zbędnych znaków i stringów poczym dodałem 
 nową kolumne 'Year Build' i usunąłem kolumne 'Name', ponieważ zawierała nazwy obiektów, które nie są istotne dla analizy danych.
 
 ```python
@@ -29,7 +29,7 @@ df['Review Count'] = df['Review Count'].str.replace(',', '')
 df['Year Build'] = df['Name'].str.split().str[0]
 df['Name'] = df['Name'].str.split(n=1).str[1]
 ```
-### Po przekształcenia zmiennych kategorycznych, za pomocą StandardScaler normalizuje kolumne SquareFeet i ustawiam dane w kolejności hronologicznej
+### Używanie sklearn do standaryzacji i normalizacji danych przy użyciu potoków
 
 ```python
 from sklearn.preprocessing import StandardScaler
