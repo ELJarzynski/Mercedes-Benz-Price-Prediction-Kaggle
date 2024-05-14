@@ -15,9 +15,9 @@ df = pd.read_csv('https://github.com/ELJarzynski/FinalProject-UM/blob/master/usa
 
 ```
 ## Przygotowanie danych pod uczenie maszynowe
-Po wczytaniu pliku użyłem biblioteki Pandas do wyczyszczenia zbióru danych ze zbędnych znaków i stringów poczym dodałem 
-nową kolumne 'Year Build' i usunąłem kolumne 'Name', ponieważ zawierała nazwy obiektów, które nie są istotne 
-dla analizy danych.
+### Po wczytaniu pliku użyłem biblioteki Pandas do wyczyszczenia zbióru danych ze zbędnych znaków i stringów poczym dodałem 
+### nową kolumne 'Year Build' i usunąłem kolumne 'Name', ponieważ zawierała nazwy obiektów, które nie są istotne 
+### dla analizy danych.
 
 ```python
 df['Mileage'] = df['Mileage'].str.replace('mi.', '')
@@ -31,18 +31,18 @@ df['Year Build'] = df['Name'].str.split().str[0]
 df['Name'] = df['Name'].str.split(n=1).str[1]
 df = df.drop(columns=['Name'])
 ```
-Zmiana wartości 'Not Priced' na None, aby móc łatwiej obsłużyć brakjące dane w dalszej obróbce.
+### Zmiana wartości 'Not Priced' na None, aby móc łatwiej obsłużyć brakjące dane w dalszej obróbce.
 ```python
 df.replace('Not Priced', None, inplace=True)
 ```
-# Konwersja kolumn na typ float, aby miały wszystkie ten sam typ danych
+### Konwersja kolumn na typ float, aby miały wszystkie ten sam typ danych
 ```python
 df['Mileage'] = df['Mileage'].astype(float)
 df['Price'] = df['Price'].astype(float)
 df['Review Count'] = df['Review Count'].astype(float)
 df['Year Build'] = df['Year Build'].astype(float)
 ```
-## Używanie sklearn do standaryzacji i normalizacji danych przy użyciu potoków
+# Używanie sklearn do standaryzacji i normalizacji danych przy użyciu potoków
 ```python
 # Potok dla imputera
 imputer_pipeline = make_pipeline(
