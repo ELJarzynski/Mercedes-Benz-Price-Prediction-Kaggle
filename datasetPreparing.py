@@ -111,38 +111,3 @@ import matplotlib.pyplot as plt
 # Wykres zależności ceny od reszty cech
 df.hist(bins=50, figsize=(20, 15))
 plt.show()
-# # Scatter plot dla ceny vs. Mileage
-# plt.figure(figsize=(12, 8))
-# plt.scatter(df['Mileage'], df['Price'], alpha=0.5)
-# plt.xlabel('Mileage')
-# plt.ylabel('Price')
-# plt.title('Price vs. Mileage')
-# plt.grid(True)
-# plt.show()
-#
-# # Scatter plot dla ceny vs. Rating
-# plt.figure(figsize=(12, 8))
-# plt.scatter(df['Rating'], df['Price'], alpha=0.5)
-# plt.xlabel('Rating')
-# plt.ylabel('Price')
-# plt.title('Price vs. Rating')
-# plt.grid(True)
-# plt.show()
-#
-# # Scatter plot dla ceny vs. Review Count
-# plt.figure(figsize=(12, 8))
-# plt.scatter(df['Review Count'], df['Price'], alpha=0.5)
-# plt.xlabel('Review Count')
-# plt.ylabel('Price')
-# plt.title('Price vs. Review Count')
-# plt.grid(True)
-# plt.show()
-#
-# # Scatter plot dla ceny vs. Year Build
-# plt.figure(figsize=(12, 8))
-# plt.scatter(df['Year Build'], df['Price'], alpha=0.5)
-# plt.xlabel('Year Build')
-# plt.ylabel('Price')
-# plt.title('Price vs. Year Build')
-# plt.grid(True)
-# plt.show()
