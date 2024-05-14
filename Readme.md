@@ -72,7 +72,7 @@ df[scaler_columns] = scaler_pipeline.fit_transform(df[scaler_columns])
 ```python
 
 ```
-![alt table](https://github.com/ELJarzynski/Inzynirka/blob/main/images/Terminal%20after%20data%20prepering.jpg)
+![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/DataFrame.png)
 ## Gdy już dane są przygotwane używam framework'a pytorch do uczeniam maszynowego
 ### Za pomocą sklearn dzielimy dane na treningowe i testowe
 ```python
