@@ -11,7 +11,7 @@ y_pred_val = model.predict(X_val)
 mse = mean_squared_error(y_val, y_pred_val)
 mae = mean_absolute_error(y_val, y_pred_val)
 
-print(f'Linear Regression means errors\n MSE: {mse}, MAE: {mae}')
+print(f'Linear Regression means errors\nMSE: {mse:.3f}, MAE: {mae:.3f}')
 
 from sklearn.neighbors import KNeighborsRegressor
 model = KNeighborsRegressor(
@@ -25,7 +25,7 @@ y_pred = model.predict(X_val)
 mse = mean_squared_error(y_val, y_pred)
 mae = mean_absolute_error(y_val, y_pred)
 
-print(f'KNN means errors\nMSE: {mse}, MAE: {mae}')
+print(f'KNN means errors\nMSE: {mse:.3f}, MAE: {mae:.3f}')
 
 from sklearn.tree import DecisionTreeRegressor
 
@@ -44,4 +44,23 @@ model.fit(X_train, y_train)
 y_pred = model.predict(X_val)
 mse = mean_squared_error(y_val, y_pred)
 mae = mean_absolute_error(y_val, y_pred)
-print(f'DecisionTreeRegressor means errors\nMSE: {mse}, MAE: {mae}')
+print(f'DecisionTreeRegressor means errors\nMSE: {mse:.3f}, MAE: {mae:.3f}')
+
+from sklearn.ensemble import RandomForestRegressor
+
+model = RandomForestRegressor(
+    n_estimators=90,
+    criterion='friedman_mse',
+    max_depth=35,
+    min_samples_split=10,
+    min_samples_leaf=4,
+    max_features='log2',
+    n_jobs=-1,
+    random_state=42,
+)
+model.fit(X_train, y_train)
+
+y_pred = model.predict(X_val)
+mse = mean_squared_error(y_val, y_pred)
+mae = mean_absolute_error(y_val, y_pred)
+print(f'RandomForestRegressor means errors\nMSE: {mse:.3f}, MAE: {mae:.3f}')
