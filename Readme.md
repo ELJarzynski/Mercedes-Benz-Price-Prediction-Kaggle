@@ -93,7 +93,7 @@ mse = mean_squared_error(y_val, y_pred_val)
 mae = mean_absolute_error(y_val, y_pred_val)
 ```
 ### Błąd MSE i MAE jest równy
-![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/LMPred.png)
+![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/LMpred.png)
 
 
 ### Drugi rodzaj regresji KNN
