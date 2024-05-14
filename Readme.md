@@ -69,9 +69,12 @@ df = pd.DataFrame(processed_data, columns=df.columns)
 # Przetworzenie danych za pomocą potoku dla skalera
 df[scaler_columns] = scaler_pipeline.fit_transform(df[scaler_columns])
 ```
+
 ## Zbiór danych prezentuje się następująco 
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/DataFrame.png)
-### Za pomocą sklearn dzielimy dane na zbiór treningowy, walidacyjny i testowy
+
+## Za pomocą sklearn dzielimy dane na zbiór treningowy, walidacyjny i testowy
+### Została zastosowania walidacja krzyżowa, ponieważ pozwala ona na zminimalizowanie wpływu losowego podziału danych na jakość modelu oraz wyniki są uśredniane, co daje bardziej stabilną ocenę jakości modelu
 ```python
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(df.drop(columns=['Price']), df['Price'], test_size=0.2, random_state=42)
