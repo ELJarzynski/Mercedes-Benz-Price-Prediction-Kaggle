@@ -164,4 +164,4 @@ mae = mean_absolute_error(y_val, y_pred)
 
 # Najlepszą regresją do predykcji cen Mercedesów w Ameryce jest RandomForestRegressor z wynikiem 
 ### Średnio kwadratowym wynoszącym 0.019, błędem bezwzględnym wynoszącym 0.088 i błędem z funkcji Hubera wynoszącym 0.01
-![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Finalerrors.png)
+![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Finalerorrs.png)
