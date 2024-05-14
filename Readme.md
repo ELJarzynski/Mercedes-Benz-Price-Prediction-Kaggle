@@ -80,4 +80,7 @@ from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(df.drop(columns=['Price']), df['Price'], test_size=0.2, random_state=42)
 X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.2, random_state=42)
 ```
-# This will be continued :)
+# Inicjalizacja Modeli
+## Na pierwszy model wybrałem regresje liniową bo prędzej dużo z nią pracowałem
+![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/LinearRegressionPred.png)
+### Błąd MSE i MAE jest dość wysoki
