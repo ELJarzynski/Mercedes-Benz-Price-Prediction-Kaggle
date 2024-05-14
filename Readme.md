@@ -92,7 +92,7 @@ y_pred_val = lm.predict(X_val)
 mse = mean_squared_error(y_val, y_pred_val)
 mae = mean_absolute_error(y_val, y_pred_val)
 ```
-### Błąd MSE i MAE jest dość wysoki
+### Błąd MSE i MAE jest równy
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/LMPred.png)
 
 
@@ -111,7 +111,7 @@ y_pred = model.predict(X_val)
 mse = mean_squared_error(y_val, y_pred)
 mae = mean_absolute_error(y_val, y_pred)
 ```
-### Błąd MSE i MAE jest dość wysoki ale mniejszy od regresji liniowej
+### Błąd MSE i MAE jest  jest równy
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/KNNpred.png)
 ### Trzeci rodzaj regresji DecisionTreeRegressor
 ```python
@@ -133,7 +133,7 @@ y_pred = model.predict(X_val)
 mse = mean_squared_error(y_val, y_pred)
 mae = mean_absolute_error(y_val, y_pred)
 ```
-### Błąd MSE i MAE jest dość wysoki, mniejszy od regresji liniowej ale większy od KNN
+### Błąd MSE i MAE jest  jest równy
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Treepred.png)
 ### Czwarty rodzaj regresji RandomForestRegressor
 ```python
@@ -155,5 +155,5 @@ y_pred = model.predict(X_val)
 mse = mean_squared_error(y_val, y_pred)
 mae = mean_absolute_error(y_val, y_pred)
 ```
-### Błąd MSE i MAE jest dość wysoki, mniejszy od regresji liniowej ale większy od KNN
+### Błąd MSE i MAE jest  jest równy
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/RFpred.png)
