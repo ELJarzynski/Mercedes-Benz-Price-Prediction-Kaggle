@@ -1,8 +1,9 @@
 import pandas as pd
+import numpy as np
+from sklearn.pipeline import make_pipeline
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import MinMaxScaler
-from sklearn.pipeline import make_pipeline
-
+from sklearn.ensemble import RandomForestRegressor
 """ ---------------------------------------- DATA PREPARING ---------------------------------------- """
 
 """Settings of terminal setup"""
@@ -69,9 +70,6 @@ X_train, X_test, y_train, y_test = train_test_split(df.drop(columns=['Price']), 
 X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.33, random_state=42)
 
 """Inicjalizacja modelu"""
-from sklearn.ensemble import RandomForestRegressor
-
-
 model = RandomForestRegressor(
     n_estimators=90,
     criterion='friedman_mse',
@@ -89,10 +87,9 @@ mse = mean_squared_error(y_val, y_pred)
 mae = mean_absolute_error(y_val, y_pred)
 
 """Predictions errors"""
-import numpy as np
 
 
-def huber_loss_fun(y_true, y_prediction, delta=1.0):
+def huber_loss_fun(y_true, y_prediction, delta=1.0) -> float:
     error = y_true - y_prediction
     huber_loss = np.where(np.abs(error) < delta, 0.5 * error ** 2, delta * (np.abs(error) - 0.5 * delta))
     return np.mean(huber_loss)
