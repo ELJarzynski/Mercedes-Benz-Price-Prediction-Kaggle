@@ -1,5 +1,5 @@
-# Predykcja cen mieszkań mercedesów za pomcą uczenia maszynowego
-W moim projekcie będę predyktował ceny Mercedesów sprzedanych w Amerycy za pomocą zbioru danych z 
+# Predykcja cen używanych Mercedesów w Ameryce za pomcą uczenia maszynowego
+W moim projekcie będę predyktował ceny Mercedesów sprzedanych w Ameryce z jak najmniejszym błędem za pomocą zbioru danych z 
 [Kaggle](https://www.kaggle.com/datasets/danishammar/usa-mercedes-benz-prices-dataset/data) 
 używając biblioteki Scikit-learn do nauczenia maszynowego tego modelu
 ## Przygotowanie bazy danych do wdrożenia uczenia maszynowego
