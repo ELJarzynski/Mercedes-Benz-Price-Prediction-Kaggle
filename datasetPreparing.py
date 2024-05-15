@@ -25,7 +25,6 @@ df['Review Count'] = df['Review Count'].str.replace(',', '')
 """Adding new column filled by year of build"""
 # Tworzę nową kolumnę "Year Build", która zawiera informacje o roku produkcji Mercedesa, co może być przydatne do przewidywania cen.
 df['Year Build'] = df['Name'].str.split().str[0]
-df['Name'] = df['Name'].str.split(n=1).str[1]
 
 """Converting price value 'Not Priced' to None"""
 # Zmieniam wartości 'Not Priced' na None, aby móc łatwiej obsłużyć brakjące dane w dalszej obróbce.

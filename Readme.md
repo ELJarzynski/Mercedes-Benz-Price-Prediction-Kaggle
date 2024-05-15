@@ -28,7 +28,6 @@ df['Review Count'] = df['Review Count'].str.replace(',', '')
 ### Dodałem nową kolumne 'Year Build' do łatwiejszej przyszłej predykcji ceny oraz usunąłem kolumne 'Name', ponieważ zawierała nazwy obiektów, które nie są istotne dla analizy danych.
 ```python
 df['Year Build'] = df['Name'].str.split().str[0]
-df['Name'] = df['Name'].str.split(n=1).str[1]
 df = df.drop(columns=['Name'])
 ```
 ### Zmiana wartości 'Not Priced' na None, aby móc łatwiej obsłużyć brakjące dane w dalszej obróbce.
