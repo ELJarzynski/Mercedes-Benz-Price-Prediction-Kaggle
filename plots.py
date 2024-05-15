@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 # Histogramy dla wszystkich kolumn
 df.hist(bins=50, figsize=(20, 15))
 plt.show()
+
 # Scatter plot dla Price a Mileage
 plt.figure(figsize=(12, 8))
 plt.scatter(df['Mileage'], df['Price'], alpha=0.2)
