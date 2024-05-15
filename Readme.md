@@ -30,7 +30,7 @@ df['Review Count'] = df['Review Count'].str.replace(',', '')
 df['Year Build'] = df['Name'].str.split().str[0]
 df = df.drop(columns=['Name'])
 ```
-### Zmiana wartości 'Not Priced' na None, aby móc łatwiej obsłużyć brakjące dane w dalszej obróbce.
+### Zmiana wartości 'Not Priced' na None, aby móc łatwiej obsłużyć brakujące dane w dalszej obróbce.
 ```python
 df.replace('Not Priced', None, inplace=True)
 ```
