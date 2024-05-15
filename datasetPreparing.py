@@ -42,6 +42,7 @@ df['Review Count'] = df['Review Count'].astype(float)
 df['Year Build'] = df['Year Build'].astype(float)
 
 """Data preprocessing"""
+# Wybranie strategi potoku
 pipeline = make_pipeline(
     SimpleImputer(strategy='mean'),
     MinMaxScaler()
@@ -91,10 +92,11 @@ mae = mean_absolute_error(y_val, y_pred)
 import numpy as np
 
 
-def huber_loss(y_true, y_pred, delta=1.0):
-    error = y_true - y_pred
+def huber_loss_fun(y_true, y_prediction, delta=1.0):
+    error = y_true - y_prediction
     huber_loss = np.where(np.abs(error) < delta, 0.5 * error ** 2, delta * (np.abs(error) - 0.5 * delta))
     return np.mean(huber_loss)
 
-huber_val = huber_loss(y_val, y_pred)
+
+huber_val = huber_loss_fun(y_val, y_pred)
 print(f'RandomForestRegressor means errors\nMSE: {mse:.3f}, MAE: {mae:.3f}, Huber Prediction: {huber_val:.3f}')

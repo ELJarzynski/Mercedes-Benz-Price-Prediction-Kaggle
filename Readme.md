@@ -7,7 +7,7 @@ używając biblioteki Scikit-learn do nauczenia maszynowego tego modelu
 ```bash
 pip install pandas
 pip install sklearn
-
+pip install numpy
 ```
 Wczytujemy plik za pomocą pandas read.csv 
 ```python
