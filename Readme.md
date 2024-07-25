@@ -1,22 +1,25 @@
-# Predykcja cen używanych Mercedesów w Ameryce za pomcą uczenia maszynowego
-W moim projekcie będę predyktował ceny Mercedesów sprzedanych w Ameryce z jak najmniejszym błędem za pomocą zbioru danych z 
-[Kaggle](https://www.kaggle.com/datasets/danishammar/usa-mercedes-benz-prices-dataset/data) 
-używając biblioteki Scikit-learn do nauczenia maszynowego tego modelu
-## Przygotowanie bazy danych do wdrożenia uczenia maszynowego
-### Instalacja potrzebnych bibliotek
+# Prediction of Used Mercedes-Benz Prices in America Using Machine Learning
+
+In this project, I aim to predict the prices of used Mercedes-Benz vehicles sold in America with minimal error using a dataset from 
+[Kaggle](https://www.kaggle.com/datasets/danishammar/usa-mercedes-benz-prices-dataset/data), 
+utilizing the Scikit-learn library to train the machine learning model.
+
+## Preparing the Dataset for Machine Learning
+
+### Installing Required Libraries
 ```bash
 pip install pandas
 pip install sklearn
 pip install numpy
 ```
-Wczytujemy plik za pomocą pandas read.csv 
+Load the file using pandas read_csv:
 ```python
 import pandas as pd
 df = pd.read_csv('https://github.com/ELJarzynski/FinalProject-UM/blob/master/usa_mercedes_benz_prices.csv')
 ```
 
-## Przygotowanie danych pod uczenie maszynowe
-### Po wczytaniu pliku użyłem biblioteki Pandas do wyczyszczenia zbióru danych ze zbędnych znaków i stringów
+## Data Preparation for Machine Learning
+### After loading the file, I used the Pandas library to clean the dataset from unnecessary characters and strings:
 
 ```python
 df['Mileage'] = df['Mileage'].str.replace('mi.', '')
@@ -25,23 +28,23 @@ df['Price'] = df['Price'].str.replace('$', '')
 df['Price'] = df['Price'].str.replace(',', '')
 df['Review Count'] = df['Review Count'].str.replace(',', '')
 ```
-### Dodałem nową kolumne 'Year Build' do łatwiejszej przyszłej predykcji ceny oraz usunąłem kolumne 'Name', ponieważ zawierała nazwy obiektów, które nie są istotne dla analizy danych.
+### I added a new column 'Year Build' for easier future price prediction and removed the 'Name' column, as it contained object names that are not relevant for data analysis:
 ```python
 df['Year Build'] = df['Name'].str.split().str[0]
 df = df.drop(columns=['Name'])
 ```
-### Zmiana wartości 'Not Priced' na None, aby móc łatwiej obsłużyć brakujące dane w dalszej obróbce.
+### Replaced 'Not Priced' values with None to handle missing data more easily during further processing:
 ```python
 df.replace('Not Priced', None, inplace=True)
 ```
-### Konwersja kolumn na typ float, aby miały wszystkie ten sam typ danych
+### Converted columns to float type to ensure uniform data types:
 ```python
 df['Mileage'] = df['Mileage'].astype(float)
 df['Price'] = df['Price'].astype(float)
 df['Review Count'] = df['Review Count'].astype(float)
 df['Year Build'] = df['Year Build'].astype(float)
 ```
-# Używanie sklearn do standaryzacji i normalizacji danych przy użyciu potoków
+# Using Scikit-learn for Data Standardization and Normalization with Pipelines
 ```python
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import MinMaxScaler
@@ -52,38 +55,38 @@ pipeline = make_pipeline(
     MinMaxScaler()
 )
 
-# Przetworzenie danych za pomocą potoków
+# Process data with the pipeline
 processed_data = pipeline.fit_transform(df)
 
-# Utworzenie DataFrame z przetworzonych danych
+# Create DataFrame from processed data
 df = pd.DataFrame(processed_data, columns=df.columns)
 ```
 
-## Zbiór danych prezentuje się następująco 
+## The dataset looks as follows:
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/DataFrame.png)
 
-## Za pomocą sklearn dzielimy dane na zbiór treningowy, walidacyjny i testowy
-### Została zastosowania walidacja krzyżowa, ponieważ pozwala ona na zminimalizowanie wpływu losowego podziału danych na jakość modelu oraz wyniki są uśredniane, co daje bardziej stabilną ocenę jakości modelu
+## Using Scikit-learn to Split Data into Training, Validation, and Test Sets
+### Cross-validation was used to minimize the impact of random data splits on model quality, and the results are averaged to provide a more stable estimate of model performance:
 ```python
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(df.drop(columns=['Price']), df['Price'],
                                                     test_size=0.33, random_state=42)
 X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.33, random_state=42)
 ```
-# Tak prezentują się wykresy danych
-## Histogramy dla wszystkich kolumn
+# The data visualizations are as follows:
+## Histograms for All Columns
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Mileage.png)
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Price.png)
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Rating.png)
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Review%20Count.png)
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Year%20Build.png)
-## Wykres scatter dla zależności ceny od poszczególnych kolumn
+## Scatter Plots for Price Dependency on Various Columns
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Cena%20Ocena.png)
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Cena%20Oglądanie.png)
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Cena%20Rok.png)
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Cena%20Przebieg.png)
-# Na inicjalizacje Modeli wybrałem Regresje, ponieważ problem polega na przewidywaniu ceny, która jest wartością liczbową
-## Na pierwszy model wybrałem regresje liniową
+# For model initialization, I chose regression since the problem involves predicting a numerical value (price).
+## The first model chosen was Linear Regression
 ```python
 from sklearn.linear_model import LinearRegression
 
@@ -95,11 +98,11 @@ y_pred_val = lm.predict(X_val)
 mse = mean_squared_error(y_val, y_pred_val)
 mae = mean_absolute_error(y_val, y_pred_val)
 ```
-### Błąd MSE i MAE jest równy
+### MSE and MAE errors are:
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/LMpred.png)
 
 
-### Drugi rodzaj regresji KNN
+### he second regression model chosen was K-Nearest Neighbors (KNN)
 ```python
 from sklearn.neighbors import KNeighborsRegressor
 
@@ -114,9 +117,9 @@ y_pred = model.predict(X_val)
 mse = mean_squared_error(y_val, y_pred)
 mae = mean_absolute_error(y_val, y_pred)
 ```
-### Błąd MSE i MAE jest  jest równy
+### MSE and MAE errors are:
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/KNNpred.png)
-### Trzeci rodzaj regresji DecisionTreeRegressor
+### The third regression model chosen was Decision Tree Regressor
 ```python
 from sklearn.tree import DecisionTreeRegressor
 
@@ -136,9 +139,9 @@ y_pred = model.predict(X_val)
 mse = mean_squared_error(y_val, y_pred)
 mae = mean_absolute_error(y_val, y_pred)
 ```
-### Błąd MSE i MAE jest  jest równy
+### MSE and MAE errors are:
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Treepred.png)
-### Czwarty rodzaj regresji RandomForestRegressor
+### The fourth regression model chosen was Random Forest Regressor
 ```python
 from sklearn.ensemble import RandomForestRegressor
 
@@ -158,9 +161,9 @@ y_pred = model.predict(X_val)
 mse = mean_squared_error(y_val, y_pred)
 mae = mean_absolute_error(y_val, y_pred)
 ```
-### Błąd MSE i MAE jest  jest równy
+### MSE and MAE errors are:
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/RFpred.png)
 
-# Najlepszą regresją do predykcji cen Mercedesów w Ameryce jest RandomForestRegressor
-### Z błedem funkcji Hubera wynoszącym 0.01, wybrałem tą miare ponieważ zbiór danych posiada wartości odstające, a funkcja Hubera jest bardziej odporna na wpływ wartości odstających niż MSE.
+# The best regression model for predicting Mercedes-Benz prices in America is RandomForestRegressor
+### With Huber loss error of 0.01, I chose this metric because the dataset contains outliers, and the Huber loss function is more robust to outliers compared to MSE.
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Finalerorrs.png)
