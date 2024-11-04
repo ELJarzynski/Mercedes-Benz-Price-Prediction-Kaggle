@@ -165,5 +165,4 @@ mae = mean_absolute_error(y_val, y_pred)
 ![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/RFpred.png)
 
 # The best regression model for predicting Mercedes-Benz prices in America is RandomForestRegressor
-### With Huber loss error of 0.01, I chose this metric because the dataset contains outliers, and the Huber loss function is more robust to outliers compared to MSE.
-![alt table](https://github.com/ELJarzynski/FinalProject-UM/blob/master/photos/Finalerorrs.png)
+### With Huber loss error of 19466.369, I chose this metric because the dataset contains outliers, and the Huber loss function is more robust to outliers compared to MSE.
