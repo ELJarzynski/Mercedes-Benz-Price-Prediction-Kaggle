@@ -42,19 +42,6 @@ df['Price'] = df['Price'].astype(float)
 df['Review Count'] = df['Review Count'].astype(float)
 df['Year Build'] = df['Year Build'].astype(float)
 
-"""Data preprocessing"""
-# Wybranie strategi potoku
-pipeline = make_pipeline(
-    SimpleImputer(strategy='mean'),
-    MinMaxScaler()
-)
-
-# Przetworzenie danych za pomocą potoków
-processed_data = pipeline.fit_transform(df)
-
-# Utworzenie DataFrame z przetworzonych danych
-df = pd.DataFrame(processed_data, columns=df.columns)
-
 """ ---------------------------------------- SECOND PART ---------------------------------------- """
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, mean_absolute_error
